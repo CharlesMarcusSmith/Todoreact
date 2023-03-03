@@ -2,9 +2,22 @@ import React from 'react';
 import './App.css';
 
 class App extends React.Component{      //inherits from React class
-  render(){                             //Render method
-    
+  constructor(props){
+    super(props);
+    // props = properties - look at notes
+    // The state is a built-in React object that is used to contain data or information about the component. 
+    this.state{
+      todoList:[],  //Array of list items
+      activeItem:{
+        id:null,
+        title:'',
+        completed:false;
+      }
 
+    }
+  }
+
+  render(){                             //Render method
     return(
       <div classname="container">
 
