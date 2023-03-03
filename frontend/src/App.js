@@ -13,7 +13,7 @@ class App extends React.Component{      //inherits from React class
             {/* form: */}
             <form id="form">
               {/* flexbox: */}
-              <div classname="flex-wrapper">
+              <div className="flex-wrapper">
                 {/* Divs for input styling for input field and submit button: */}
                 <div style={{flex:6}}>
                   <input className="form-control" id="title" type="text" name="title" placeholder="Add task.."/>

@@ -1,23 +1,94 @@
 /* body */
 body{
+    /* General Background colour */
     background: rgb(128,128,128);
+    /* Gradient background (Grey, white, greay horizontally */
     background: linear-gradient(90deg, rgba(54,217,182,1) 0%, rgba(250,250,250,1) 43%, rgba(54,217,182,1) 100%);
 
+    /* Here is a visual representation of the different tags within the hierarchy: H1 – Main Title. H2 – Subsection. 
+    H3 – Sub-Subsection. H4 – Sub-Sub-Subsection. */
     h1,h2,h3,h4,h5, p, span, strike{
+        /* Our imported front */
         font-family: 'Montserrat', sans-serif;
     }
 }
 
+
 #task-container{
-    max-width:600px;
+    /* Dimmensions of this container */
+    max-width:600px; 
     margin:0 auto;
+    /* Shadow behind the container */
+    /* box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color]; */
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    /* Background of this specific container */
     background-color: #fff;
     
+    /* Placement of the box itself - where it is on the page */
     margin-top:100px;
     margin-bottom:100px;
   
+    /* The CSS justify-content property defines how the browser distributes space between and around content items along the 
+    main-axis of a flex container, and the inline axis of a grid container. */
+    /* Space around: Distribute items evenly. Items have a half-size space on either end */
     justify-content: space-around;
+    /* The align-items property is related to CSS layout. It effects how elements are aligned both in Flexbox and Grid layouts. */
+    /* flex-start: cross-start margin edge of the items is placed on the cross-start line */
     align-items: flex-start;
   
+  }
+
+
+  #form-wrapper{
+    /* An element with position: sticky; is positioned based on the user's scroll position. */
+    position: -webkit-sticky;
+    position: sticky;
+
+    /* The margin-top CSS property sets the margin area on the top of an element. */
+    /* In CSS rem stands for “root em”, a unit of measurement that represents the font size of the root element. */
+    top: 0rem;
+    /* The border shorthand CSS property sets an element's border. It sets the values of border-width, border-style, 
+    and border-color. */
+    /* The border-bottom shorthand CSS property sets an element's bottom border.  */
+    border-bottom: 1px solid  #e9e9e9;
+    /* This background colour will overwirte the one in task-container in our case */
+    background-color: #fff;
+    /* Adding an additional layer of shadow */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+    /* Padding is used to create space around an element's content, inside of any defined borders. */
+    padding:40px;
+  }
+
+  /* Submit button */
+  #submit{
+    /* Color of the button */
+    background-color: #36d9b6;
+    /* Adding this too 100 from 0 makes the button shape rounded instead of square */
+    border-radius: 0;
+    /*Border   */
+    border:0;
+    /* Text color */
+    color: #fff;
+  }
+  
+  /* Used to inline the input text box and the button*/
+  .flex-wrapper{
+    display: flex;
+  }
+  
+  /*In programming languages, the word container is generally used for structures that can contain more than one element. 
+  A wrapper, on the other hand, is something that wraps around a single object to provide more functionality and interface to it.  */
+
+  /* Honestly at this stage, I cant tell what this does and changing it effects nothing */
+  .task-wrapper{
+      cursor: pointer;
+      border-bottom: 1px solid  #e9e9e9;
+      color: #686868;
+      margin:5px;
+      padding:20px;
+  }
+  
+  /* Honestly at this stage, I cant tell what this does and changing it effects nothing */
+  .task-wrapper:hover{
+      background-color: #F0F0F0;
   }
