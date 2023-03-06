@@ -64,6 +64,29 @@ class App extends React.Component{      //inherits from React class
     // First its going to prevent the form from submitting, because we want to manually submit that.
     e.preventDefault()
     console.log('Item:', this.state.activeItem) //consoling out result as test
+
+    var url = 'http://127.0.0.1:8000/api/task-create/'      //our base url, dynamic will be added later
+    fetch(url, {
+      //data we are sending:
+      method:'POST',
+      headers:{
+        'Content-type':'application/json',
+      },
+      // stringafy used as its needed for fetch api
+      body:JSON.stringify(this.state.activeItem)
+    }).then((response) => {
+      this.fetchTasks()
+      this.setState({
+        activeItem:{
+          id:null,
+          title:'',
+          completed:false,
+        }
+      }).catch(function(error){ //Catching errors
+        console.log('Error', error)
+      })
+    })
+
   }
   
 
