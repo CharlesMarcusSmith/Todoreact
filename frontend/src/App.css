@@ -87,6 +87,13 @@ body{
       margin:5px;
       padding:20px;
   }
+
+  /* Editing bootstrap buttons */
+  .btn-info {
+    color: #fff;
+    background-color: #36d9b6;
+    border-color: #36d9b6;
+    }
   
   /* Honestly at this stage, I cant tell what this does and changing it effects nothing */
   .task-wrapper:hover{
