@@ -79,11 +79,11 @@ body{
   /*In programming languages, the word container is generally used for structures that can contain more than one element. 
   A wrapper, on the other hand, is something that wraps around a single object to provide more functionality and interface to it.  */
 
-  /* Honestly at this stage, I cant tell what this does and changing it effects nothing */
+  /* This is for our listed items, which will contain Edit and Delete buttons coded through bootstrap*/
   .task-wrapper{
       cursor: pointer;
-      border-bottom: 1px solid  #e9e9e9;
-      color: #686868;
+      border-bottom: 1px solid  #7e7e7e;
+      color: #7e7e7e;
       margin:5px;
       padding:20px;
   }

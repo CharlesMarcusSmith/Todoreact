@@ -36,15 +36,16 @@ class App extends React.Component{      //inherits from React class
     fetch('http://127.0.0.1:8000/api/task-list/')       //fetching api url
     .then(response => response.json())                  //converting response to JSON
     .then(data => 
-      console.log('Data:', data)
+      this.setState({
+        todoList:data
+      })
       )
-
-
   }
 
   
 
   render(){                             //Render method
+    var tasks = this.state.todoList
     return(
       <div className="container">
 
@@ -67,11 +68,29 @@ class App extends React.Component{      //inherits from React class
             </form>
           </div>
 
-
-
-
-          <div id="list-container">
-
+          <div id="list-wrapper">
+              {/* passing in the object we are refercing in the current iteration of the loop; */}
+              {/* and the index of the current iteration of the loop we're in */}
+              {tasks.map(function(task, index){   
+                return(
+                  // Here we will return the list-wrapper/task-wrapper item
+                  // Key (index of loop), and a few classes as attributes:
+                  //task wrapper is our container for the task we are viewing, flex wrapper is to keep everything in line
+                  <div key={index} className="task-wrapper flex-wrapper">
+                    {/* using span tags to check everything is working */}
+                    {/* Flex 7 - widest object in the list */}
+                    <div style={{flex:7}}>
+                        <span>{task.title}</span>
+                    </div>
+                    <div style={{flex:1}}>
+                    <button type="button" className="btn btn-info">Edit</button>
+                    </div>
+                    <div style={{flex:1}}>
+                    <button type="button" className="btn btn-info delete">Delete</button>
+                    </div>
+                  </div>
+                )
+              })}
           </div>
         </div>
       </div>
