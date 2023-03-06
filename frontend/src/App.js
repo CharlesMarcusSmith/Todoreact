@@ -19,6 +19,8 @@ class App extends React.Component{      //inherits from React class
       editing:false,
     }
     this.fetchTasks = this.fetchTasks.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   };
 
 
@@ -42,6 +44,27 @@ class App extends React.Component{      //inherits from React class
       )
   }
 
+  // e is our keyup event
+  handleChange(e){
+    
+    var name = e.target.name      // name of attribute we are editing (input field).
+    var value = e.target.value    //title to the item we are creating
+    console.log('Name:', name)
+    console.log('Value:', value)
+    //setting state using a spread operator:
+    this.setState({
+      activeItem:{
+        ...this.state.activeItem, //attribute we are updating
+        title:value               //we want to update the title, with the update of value.
+      }
+    })
+  }
+
+  handleSubmit(e){
+    // First its going to prevent the form from submitting, because we want to manually submit that.
+    e.preventDefault()
+    console.log('Item:', this.state.activeItem) //consoling out result as test
+  }
   
 
   render(){                             //Render method
@@ -52,12 +75,12 @@ class App extends React.Component{      //inherits from React class
         <div id="task-container">
           <div id="form-wrapper">
             {/* form: */}
-            <form id="form">
+            <form onSubmit={this.handleSubmit} id="form">
               {/* flexbox: */}
               <div className="flex-wrapper">
                 {/* Divs for input styling for input field and submit button: */}
                 <div style={{flex:6}}>
-                  <input className="form-control" id="title" type="text" name="title" placeholder="Add task.."/>
+                  <input onChange= {this.handleChange} className="form-control" id="title" type="text" name="title" placeholder="Add task.."/>
                 </div>
 
                 <div style={{flex: 1}}>
