@@ -81,12 +81,11 @@ class App extends React.Component{      //inherits from React class
           id:null,
           title:'',
           completed:false,
-        }
-      }).catch(function(error){ //Catching errors
-        console.log('Error', error)
+      }
       })
-    })
-
+      }).catch(function(error){ //Catching errors
+        console.log('ERROR', error)
+      })
   }
   
 
