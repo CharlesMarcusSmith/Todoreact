@@ -83,6 +83,14 @@ class App extends React.Component{      //inherits from React class
     console.log('Item:', this.state.activeItem) //consoling out result as test
     var csrftoken = this.getCookie('csrftoken') //CRF Token for Django
 
+    //Coditional for checking if we are editing or creating a new item:
+    if(this.state.edit == true){
+      url = 'http://127.0.0.1:8000/api/task-update/${this.state.activeItem.id}/'     //Here we are taking the item id from the state, as the state changes once button is clicked.
+      this.state({
+        editing:false,
+      })
+    }
+
     var url = 'http://127.0.0.1:8000/api/task-create/'      //our base url, dynamic will be added later
     fetch(url, {
       //data we are sending:
