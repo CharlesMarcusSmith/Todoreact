@@ -21,8 +21,25 @@ class App extends React.Component{      //inherits from React class
     this.fetchTasks = this.fetchTasks.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.getCookie = this.getCookie.bind(this)
   };
 
+  //CRF Django token:
+  getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 
   // The componentWillMount() method allows us to execute the React code synchronously 
   // when the component gets loaded or mounted in the DOM (Document Object Model). 
@@ -64,6 +81,7 @@ class App extends React.Component{      //inherits from React class
     // First its going to prevent the form from submitting, because we want to manually submit that.
     e.preventDefault()
     console.log('Item:', this.state.activeItem) //consoling out result as test
+    var csrftoken = this.getCookie('csrftoken') //CRF Token for Django
 
     var url = 'http://127.0.0.1:8000/api/task-create/'      //our base url, dynamic will be added later
     fetch(url, {
@@ -71,6 +89,7 @@ class App extends React.Component{      //inherits from React class
       method:'POST',
       headers:{
         'Content-type':'application/json',
+        'X-CSRFToken':csrftoken,
       },
       // stringafy used as its needed for fetch api
       body:JSON.stringify(this.state.activeItem)
@@ -102,7 +121,7 @@ class App extends React.Component{      //inherits from React class
               <div className="flex-wrapper">
                 {/* Divs for input styling for input field and submit button: */}
                 <div style={{flex:6}}>
-                  <input onChange= {this.handleChange} className="form-control" id="title" type="text" name="title" placeholder="Add task.."/>
+                  <input onChange= {this.handleChange} className="form-control" value={this.state.activeItem.title} id="title" type="text" name="title" placeholder="Add task.."/>
                 </div>
 
                 <div style={{flex: 1}}>
