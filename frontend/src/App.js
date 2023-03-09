@@ -107,9 +107,17 @@ class App extends React.Component{      //inherits from React class
       })
   }
   
+  startEdit(task){          //task is the item we have clicked on.
+    this.setState({
+      activeItem:task,      //Changing our activeItem to the item we clicked
+      editing:true,
+    })
+  }
 
   render(){                             //Render method
     var tasks = this.state.todoList
+    var self = this 
+
     return(
       <div className="container">
 
@@ -147,7 +155,7 @@ class App extends React.Component{      //inherits from React class
                         <span>{task.title}</span>
                     </div>
                     <div style={{flex:1}}>
-                    <button type="button" className="btn btn-info">Edit</button>
+                    <button onClick={() => self.startEdit(task)} type="button" className="btn btn-info">Edit</button>
                     </div>
                     <div style={{flex:1}}>
                     <button type="button" className="btn btn-info delete">Delete</button>
