@@ -22,6 +22,8 @@ class App extends React.Component{      //inherits from React class
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getCookie = this.getCookie.bind(this)
+    this.getCookie = this.getCookie.bind(this)
+    this.startEdit = this.startEdit.bind(this)
   };
 
   //CRF Django token:
@@ -84,9 +86,10 @@ class App extends React.Component{      //inherits from React class
     var csrftoken = this.getCookie('csrftoken') //CRF Token for Django
 
     //Coditional for checking if we are editing or creating a new item:
-    if(this.state.edit == true){
-      url = 'http://127.0.0.1:8000/api/task-update/${this.state.activeItem.id}/'     //Here we are taking the item id from the state, as the state changes once button is clicked.
-      this.state({
+    if(this.state.editing == true){
+      //Here we are taking the item id from the state, as the state changes once button is clicked.
+      url = `http://127.0.0.1:8000/api/task-update/${this.state.activeItem.id}/`     
+      this.setState({
         editing:false,
       })
     }
