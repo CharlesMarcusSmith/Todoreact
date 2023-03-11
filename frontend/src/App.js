@@ -25,6 +25,7 @@ class App extends React.Component{      //inherits from React class
     this.getCookie = this.getCookie.bind(this)
     this.startEdit = this.startEdit.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
+    this.strikeUnstrike = this.strikeUnstrike.bind(this)
   };
 
   //CRF Django token:
@@ -141,6 +142,26 @@ class App extends React.Component{      //inherits from React class
     })
   }
 
+  strikeUnstrike(task){
+    task.completed = !task.completed
+    var csrftoken = this.getCookie('csrftoken') //CSRF Token for Django
+    var url = `http://127.0.0.1:8000/api/task-update/${task.id}/`     
+
+    fetch(url, {
+      method:'POST',
+      headers:{
+        'Content-type':'application/json',
+        'X-CSRFToken':csrftoken,
+      },
+      body:JSON.stringify({'completed':task.completed, 'title':task.title})
+      }).then(() => {
+        this.fetchTasks()
+      
+    })
+
+    console.log('TASK', task.completed)
+  }
+
   render(){                             //Render method
     var tasks = this.state.todoList
     var self = this 
@@ -178,8 +199,12 @@ class App extends React.Component{      //inherits from React class
                   <div key={index} className="task-wrapper flex-wrapper">
                     {/* using span tags to check everything is working */}
                     {/* Flex 7 - widest object in the list */}
-                    <div style={{flex:7}}>
+                    <div onClick={() => self.strikeUnstrike(task)} style={{flex:7}}>
+                      {task.completed == false ? (
                         <span>{task.title}</span>
+                      ) : (
+                        <strike>{task.title}</strike>
+                      )}
                     </div>
                     <div style={{flex:1}}>
                     <button onClick={() => self.startEdit(task)} type="button" className="btn btn-info">Edit</button>
